@@ -25,7 +25,8 @@ namespace HumberEnrollmentAssignment
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EnrollmentPoco>().HasKey(c => new { c.StudentId, c.CourseId });
-
+            modelBuilder.Entity<EnrollmentPoco>().HasOne(e => e.Student).WithMany(e => e.Enrollments).HasForeignKey(e => e.StudentId);
+            modelBuilder.Entity<EnrollmentPoco>().HasOne(e => e.Course).WithMany(e => e.Enrollments).HasForeignKey(e => e.CourseId);
         }
 
     }
